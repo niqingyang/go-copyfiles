@@ -21,4 +21,4 @@ Help Options:
 
 ## SourceTree
 
-![](https://raw.githubusercontent.com/niqingyang/go-copyfiles/master/images/01.png)
+![](https://github.com/niqingyang/go-copyfiles/blob/main/images/01.png?raw=true)
