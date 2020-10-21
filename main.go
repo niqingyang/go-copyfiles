@@ -12,7 +12,7 @@ import (
 const (
 	AppName    = "copyfiles"
 	AppVersion = "v1.0"
-	AppDate    = "2020-10-20"
+	AppDate    = "2020-10-21"
 	AppAuthor  = "niqingyang"
 	AppEmail   = "niqy@qq.com"
 )
@@ -47,6 +47,7 @@ func main() {
 	}
 
 	if len(files) == 0 {
+		dialog.Message("not found any copy files").Title("Error").Error()
 		panic("not found any copy files")
 	}
 
@@ -54,7 +55,13 @@ func main() {
 		dest, err := dialog.Directory().Browse()
 
 		if err != nil {
-			panic(err)
+			if err.Error() == dialog.ErrCancelled.Error() {
+				fmt.Println("User Cancelled")
+				os.Exit(1)
+			} else {
+				dialog.Message("%s", err).Title("Error").Error()
+				panic(err)
+			}
 		}
 
 		options.Dest = dest
